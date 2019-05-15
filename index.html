@@ -1,1 +1,32 @@
-FPV-KA Affiliation Manager
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>FPV-KA Affiliation Link Generator</title>
+</head>
+
+<body>
+    <center>
+    <h1>FPV-KA Affiliation Link Generator</h1>
+    <p>Version 1.0 - only supports <a href="https://www.banggood.com" target="_blank">BangGood</a></p>
+    <br>
+    <h4>URL (BangGood):</h4>
+    <input type="text" id="refcode_banggood" style='width:100%;height:40px;text-align:center'>
+    <br><br>
+    <input type="button" id="genAff" value="Generate Affiliation Link" style="height:40px;background-color:white">
+    <input type="button" id="delInput" value="Remove Input" style="height:40px;background-color:red" onclick="delInput()">
+
+    <h4>Links:</h4>
+    <br>
+    <output name="links" id="links" style='width:100%'></output>
+    <br><br><br>
+    <p>Created by Dr. Locke</p>
+    </center>
+    <script src="aff_generator.js"></script>
+    <script>
+        function delInput() {
+            document.getElementById("refcode_banggood").value = "";
+        }
+    </script>
+</body>
+</html>
