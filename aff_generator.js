@@ -23,7 +23,7 @@ function writeOut(text, description) {
 
 function generateAffLink() {
     var url = document.querySelector("#refcode_banggood").value;
-    var urlRegexExp = "http(s)?://(www\.)?(m\.)?banggood\.com/";
+    var urlRegexExp = "http(s)?://(www\.)?(m\.)?banggood\.com/(.*/)*";
     var urlRegex = new RegExp(urlRegexExp + ".*");
 
     if (!url.match(urlRegex))
