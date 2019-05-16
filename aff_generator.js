@@ -1,6 +1,9 @@
 var code = "H8052232981273201905";
 
 function writeOut(text) {
+    writeOut(text, text)
+}
+function writeOut(text, description) {
     var output = document.getElementById('links');
     var timestamp = new Date().toLocaleTimeString('de-DE', { hour12: false, 
         hour: "numeric", 
@@ -8,12 +11,7 @@ function writeOut(text) {
         second: "numeric"});
     if (text.startsWith("http"))
     {
-        var textDescription = text;
-        var regex = new RegExp("https://www.banggood.com/");
-        textDescription = textDescription.replace(regex, "");
-        regex = new RegExp("\.html.*");
-        textDescription = textDescription.replace(regex, "");
-        text = "<p>" + timestamp + " | " + "<a href=\"" + text + "\" target=\"_blank\">" + textDescription + "</a>" + "</p>";
+        text = "<p>" + timestamp + " | " + "<a href=\"" + text + "\" target=\"_blank\">" + description + "</a>" + "</p>";
         //<a href="https://www.thesitewizard.com/" target="_blank">thesitewizard.com</a>
     }
     else
@@ -25,8 +23,10 @@ function writeOut(text) {
 
 function generateAffLink() {
     var url = document.querySelector("#refcode_banggood").value;
+    var urlRegexExp = "http(s)?://(www\.)?(m\.)?banggood\.com/";
+    var urlRegex = new RegExp(urlRegexExp + ".*");
 
-    if (!url.startsWith("https://www.banggood.com/") && !url.startsWith("https://www.m.banggood.com/"))
+    if (!url.match(urlRegex))
     {
         writeOut("Error: This isn't a valid URL!");
     }
@@ -64,7 +64,10 @@ function generateAffLink() {
             
             if (postUrl != null)
             {
-                writeOut(prefixUrl + postUrl);
+                var affUrl = prefixUrl + postUrl;
+                var urlDesc = affUrl.replace(new RegExp(urlRegexExp), "");
+                urlDesc = urlDesc.replace(new RegExp("\.html.*"), "");
+                writeOut(affUrl, urlDesc);
             }
             else
             {
