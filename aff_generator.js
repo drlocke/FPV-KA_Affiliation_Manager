@@ -21,6 +21,13 @@ function writeOut(text, description) {
     output.innerHTML = text + output.innerHTML;
 }
 
+function generateUrlDesc(fullUrl)
+{
+    var urlDesc = affUrl.replace(new RegExp(urlRegexExp), "");
+    urlDesc = urlDesc.replace(new RegExp("\.html.*"), "");
+    return urlDesc;
+}
+
 function generateAffLink() {
     var url = document.querySelector("#refcode_banggood").value;
     var urlRegexExp = "http(s)?://(www\.)?(m\.)?banggood\.com/(.*/)*";
@@ -65,9 +72,7 @@ function generateAffLink() {
             if (postUrl != null)
             {
                 var affUrl = prefixUrl + postUrl;
-                var urlDesc = affUrl.replace(new RegExp(urlRegexExp), "");
-                urlDesc = urlDesc.replace(new RegExp("\.html.*"), "");
-                writeOut(affUrl, urlDesc);
+                writeOut(affUrl, generateUrlDesc(affUrl));
             }
             else
             {
@@ -76,7 +81,7 @@ function generateAffLink() {
         }	
         else
         {
-            writeOut(url);
+            writeOut(url, generateUrlDesc(url));
         }
     }
 }
