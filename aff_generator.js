@@ -1,4 +1,5 @@
 var code = "H8052232981273201905";
+var urlRegexExp = "http(s)?://(www\.)?(m\.)?banggood\.com/(.*/)*";
 
 function writeOut(text) {
     writeOut(text, text)
@@ -28,7 +29,6 @@ function generateUrlDesc(fullUrl)
 
 function generateAffLink() {
     var url = document.querySelector("#refcode_banggood").value;
-    var urlRegexExp = "http(s)?://(www\.)?(m\.)?banggood\.com/(.*/)*";
     var urlRegex = new RegExp(urlRegexExp + ".*");
 
     if (!url.match(urlRegex))
