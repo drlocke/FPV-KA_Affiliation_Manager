@@ -23,9 +23,7 @@ function writeOut(text, description) {
 
 function generateUrlDesc(fullUrl)
 {
-    var urlDesc = affUrl.replace(new RegExp(urlRegexExp), "");
-    urlDesc = urlDesc.replace(new RegExp("\.html.*"), "");
-    return urlDesc;
+    return fullUrl.replace(new RegExp(urlRegexExp), "").replace(new RegExp("\.html.*"), "");
 }
 
 function generateAffLink() {
